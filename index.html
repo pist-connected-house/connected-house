@@ -15,6 +15,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Weather CSS-->
+	<link href="dist/css/weather-panel.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -49,12 +52,12 @@
 
 </head>
 
-<body>
+<body ng-app="pistApp">
 
-    <div ng-app="pistApp" ng-controller="MainController" id="wrapper">
+    <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -89,15 +92,15 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
+            <div class="navbar-fixed sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse navbar-fixed">
                     <ul class="nav" id="side-menu">
 
                         <li>
                             <a href="#/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#/energy"><i class="fa fa-lightbulb-o fa-fw"></i> My Energy<span class="fa arrow"></span></a>
+                            <a href="#/energy"><i class="fa fa-flash-o fa-fw"></i> My Energy<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#/energy/electricity">Electricity</a>
@@ -112,6 +115,15 @@
                         </li>
                         <li>
                             <a href="#/energy/weather"><i class="fa fa-sun-o fa-fw"></i> My Weather</a>
+                        </li>
+						<li>
+                           <a href="#"><i class="fa fa-lock fa-fw"></i> My Security</a>
+                        </li>
+						<li>
+                            <a href="#"><i class="fa fa-lightbulb-o fa-fw"></i> My Lighting</a>
+                        </li>
+						<li>
+                            <a href="#"><i class="fa fa-fire fa-fw"></i> My Heating</a>
                         </li>
 
                     </ul>

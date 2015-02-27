@@ -1,3 +1,16 @@
+<script src="js/mootools-core.js" type="text/javascript"></script><!-- modular and OO js framework -->
+<script src="js/modal.js" type="text/javascript"></script><!-- squeezebox-->
+<script src="js/slide.js" type="text/javascript"></script><!-- ??? -->
+<script type="text/javascript">
+
+    window.addEvent('domready', function () {
+        SqueezeBox.initialize({});
+        SqueezeBox.assign($$('a.modal'), {
+            parse: 'rel'
+            });
+        });
+</script>
+
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Electricity</h1>
@@ -7,13 +20,13 @@
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h3>IMMEDIATE VALUE</h3>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                JavaScript
+                <h3>5.40 Watt</h3>
             </div>
             <!-- /.panel-body -->
         </div>
@@ -21,13 +34,13 @@
     </div>
     <!-- /.col-lg-12 -->
     <div class="col-lg-12">
-        <div class="panel panel-default">
+        <div class="panel panel-success">
             <div class="panel-heading">
                 <h3>ADDED VALUE</h3>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                JavaScript
+                <h3>18.77 kWh <small> Since 24/02/15 </small> </h3>
             </div>
             <!-- /.panel-body -->
         </div>
@@ -36,13 +49,31 @@
 
     <!-- /.col-lg-6 -->
     <div class="col-lg-12">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h3>OVER A PERIOD OF</h3>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                JavaScript
+                <div class="flot-chart">
+                    <div id="bd" class="clearfix">
+                        <!--<script type="text/javascript" src="js/pist.js"></script><!-- requetes serveur -->
+                        <script src="js/highstock.js"></script><!-- stock charts -->
+                        <script src="js/exporting.js"></script><!-- export chart as an image -->
+
+                        <div ng-hide="ready" class="loading">
+                            <img src="images/ajax-loader.gif" alt="loading">
+                            Loading chart...
+                        </div>
+                        <div ng-show="ready" id="container">
+                            
+                        </div>
+
+                        <!--<script src="js/scripts.js"></script><!-- ??? -->
+                        <script src="js/highslide-full.js"></script><!-- ??? -->
+                        <script src="js/highslide.js"></script><!-- ??? -->
+                    </div>
+                </div>
             </div>
             <!-- /.panel-body -->
         </div>
