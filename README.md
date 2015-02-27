@@ -7,3 +7,4 @@ This project is an open-source web interface for a connected house built by stud
 3. Weather forecast display
 
 test by jerome
+
