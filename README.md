@@ -6,5 +6,5 @@ This project is an open-source web interface for a connected house built by stud
 2. Current weather display
 3. Weather forecast display
 
-test by jerome
+test by Sonia
 
