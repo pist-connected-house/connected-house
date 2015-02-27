@@ -3,8 +3,103 @@ pistApp.controller('MainController', ['$scope', function($scope){
 	
 }]);
 
-pistApp.controller('ElectricityController', ['$scope', function($scope){
+pistApp.controller('ElectricityController', ['$scope', '$http', function($scope, $http){
   $scope.ready = false;
+
+  /*$http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=2000')
+  //http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&start=2015-02-01%2015:02:01
+    .then(function(result) {
+      //console.log(result.data.feeds.map(function(a) {return parseInt(a.field6);}));
+      $scope.ready = true;
+      var myDate="30-01-2015";
+              myDate=myDate.split("-");
+              var newDate=myDate[1]+"/"+myDate[0]+"/"+myDate[2];
+              var timestamp = new Date(newDate).getTime();
+      var donnees = result.data.feeds.map(function(a) {
+        var date = a.created_at;
+        var x = new Date(date).getTime();
+        var y = parseInt(a.field6);
+        return [x, y];
+      });
+      console.log(donnees);
+      $('#container').highcharts('StockChart', {
+        chart: {
+          type: 'line',
+          zoomType: 'x'
+        },
+        title: {
+          text: 'Channel 4'
+        },
+        subtitle: {
+          text: 'Field 6'
+        },
+        rangeSelector: {
+          buttons: [{
+            type: 'hour',
+            count: 1,
+            text: '1h'
+          }, {
+            type: 'day',
+            count: 1,
+            text: '1d'
+          }, {
+            type: 'month',
+            count: 1,
+            text: '1m'
+          }, {
+            type: 'year',
+            count: 1,
+            text: '1y'
+          }, {
+            type: 'all',
+            text: 'All'
+          }],
+          inputEnabled: false, // it supports only days
+          selected: 4 // all
+        },
+        xAxis: {
+          type: 'datetime',
+          plotLines: [{
+            color: 'red', // Color value
+            //dashStyle: 'longdashdot', // Style of the plot line. Default to solid
+            value: timestamp, // Value of where the line will appear
+            width: 2 // Width of the line    
+          }],
+          //                minRange: 3600 * 1000, // one hour
+          ordinal: false
+        },
+        yAxis: {
+        //                 min: 0,
+        //                 max: 50,
+          floor: 0
+        },
+        plotOptions: {
+          line: {
+            gapSize: 250
+          }
+        },
+        navigator: {
+          adaptToUpdatedData: false,
+          series: {
+            data: donnees
+          }
+        },
+        scrollbar: {
+          liveRedraw: false
+        },
+        series: [{
+          data: donnees,
+          dataGrouping: {
+            enabled: false
+          }
+        }]
+      });
+    });*/
+
+
+
+
+
   var example = 'lazy-loading',
     theme = 'default';
 
