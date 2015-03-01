@@ -28,6 +28,10 @@ pistApp.config(['$routeProvider',
       	templateUrl: 'pages/weather.html',
       	controller: 'MainController'
     	}).
+      when('/forecast', {
+        templateUrl: 'pages/forecast.html',
+        controller: 'MainController'
+      }).
     	otherwise({
       	redirectTo: '/'
     	});
