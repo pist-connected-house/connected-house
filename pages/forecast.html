@@ -8,23 +8,23 @@
 <div class="row">
     <table class="table table-striped table-bordered table-hover">
 		<thead>
-			<tr ng-repeat = "d in days">
-				<th>{{d}}</th>
-			</tr>
+			<th ng-repeat = "d in days">
+				<tr>{{d}}</tr>
+			</th>
 		</thead>
 		<tbody>
-			<tr ng-repeat = "t in temp">
-				<td>{{t.min}} | {{t.max}}</td>
-			</tr>
-			<tr ng-repeat = "i in img">
-				<td>{{i}}</td>
-			</tr>
-			<tr ng-repeat = "w in weather">
-				<td>{{w}}</td>
-			</tr>
-			<tr ng-repeat = "w in wind">
-				<td>{{w}}</td>
-			</tr>
+			<td ng-repeat = "t in temp">
+				<tr>{{t.min}} | {{t.max}}</tr>
+			</td>
+			<td ng-repeat = "i in img">
+				<tr>{{i}}</tr>
+			</td>
+			<td ng-repeat = "w in weather">
+				<tr>{{w}}</tr>
+			</td>
+			<td ng-repeat = "w in wind">
+				<tr>{{w}}</tr>
+			</td>
 		</tbody>
 	</table>
 </div>
