@@ -7,6 +7,10 @@ This project is an open-source web interface for a connected house built by stud
 3. Weather forecast display
 
 
+<<<<<<< HEAD
 
 
 J'ai compris comment ça marche !!!!!
+=======
+Sonia est dans la place
+>>>>>>> master
