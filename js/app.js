@@ -30,7 +30,7 @@ pistApp.config(['$routeProvider',
     	}).
       when('/forecast', {
         templateUrl: 'pages/forecast.html',
-        controller: 'MainController'
+        controller: 'ForecastController'
       }).
     	otherwise({
       	redirectTo: '/'

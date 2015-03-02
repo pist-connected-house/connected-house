@@ -6,5 +6,29 @@
 </div>
 <!-- /.row -->
 <div class="row">
-    
+	<div ng-hide="ready" class="loading">
+        <img src="images/ajax-loader.gif" alt="loading">
+        Loading chart...
+    </div>
+    <table ng-show="ready" class="table table-striped" id="forecast-table">
+		<thead>
+			<tr>
+				<th ng-repeat = "d in days">{{d}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td ng-repeat = "t in temp track by $index">{{t.morn}}°C | {{t.eve}}°C</td>
+			</tr>
+			<tr>
+				<td ng-repeat = "i in image track by $index"><img src="images/weather/{{i}}.png"></td>
+			</tr>
+			<tr>
+				<td ng-repeat = "w in weather track by $index">{{w}}</td>
+			</tr>
+			<tr>
+				<td ng-repeat = "w in wind track by $index">{{w}} km/h</td>
+			</tr>
+		</tbody>
+	</table>
 </div>

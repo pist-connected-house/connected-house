@@ -25,6 +25,11 @@ body {
 	padding : 0px;
 }
 
+
+#forecast-table th, td {
+    text-align: center;
+}
+
 .loading {
     text-align: center;
     font-size: 2em;
