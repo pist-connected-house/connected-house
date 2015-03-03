@@ -1,5 +1,5 @@
 pistApp.controller('ForecastController', ['$scope', '$http', function($scope, $http){
-	var jours = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+	var jours = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 	$scope.days = [];
 	$scope.temp = [];
