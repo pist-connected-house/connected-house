@@ -8,7 +8,7 @@ pistApp.controller('ForecastController', ['$scope', '$http', function($scope, $h
 	$scope.wind = [];
 	$scope.ready = false;
 
-	/*$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=7')
+	$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=7')
 		.then(function(result) {
 			var list = result.data.list;
 			list.forEach(function(element){
@@ -21,6 +21,6 @@ pistApp.controller('ForecastController', ['$scope', '$http', function($scope, $h
 				$scope.wind.push(Math.floor(element.speed));
 			});
 			$scope.ready = true;
-		});*/
+		});
 	
 }]);
