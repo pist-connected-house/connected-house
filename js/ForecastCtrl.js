@@ -1,4 +1,4 @@
-/*pistApp.controller('ForecastController', ['$scope', '$http', function($scope, $http){
+pistApp.controller('ForecastController', ['$scope', '$http', function($scope, $http){
 	var jours = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 	$scope.days = [];
@@ -23,4 +23,4 @@
 			$scope.ready = true;
 		});
 	
-}]);*/
+}]);
