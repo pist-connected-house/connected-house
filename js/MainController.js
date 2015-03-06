@@ -114,12 +114,11 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 			          }
 			        }]
 			      });
-			
-			document.querySelector('.highcharts-container').style.width = '100%';
 			$scope.energyReady = true;
 			});
 	}
 	current();
+	current();//deuxieme appel pour forcer le redimensionnement (car sinon bug sur Safari)
 	$interval(current, 20000);
 
 	
