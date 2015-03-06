@@ -1,5 +1,7 @@
 pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', function($scope, $http, $interval){
   $scope.ready = false;
+  $scope.addedReady = false;
+  $scope.currentReady = false;
 
   /*$http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=2000')
   //http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&start=2015-02-01%2015:02:01
@@ -100,6 +102,7 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
           sum += parseInt(element.field6);
         });
         $scope.addedElectricity = sum/1000;
+        $scope.addedReady = true;
       });
   }
   getAdded();
@@ -109,6 +112,7 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
     $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=1')
       .then(function(result) {
         $scope.currentElectricity = parseInt(result.data.feeds[0].field6) * 220;
+        $scope.currentReady = true;
       });
   }
 

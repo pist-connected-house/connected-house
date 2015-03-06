@@ -26,7 +26,10 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <h3>{{currentElectricity}} W</h3>
+                <div ng-hide="currentReady">
+                    <img src="images/ajax-loader.gif" alt="loading">
+                </div>
+                <h3 ng-show="currentReady">{{currentElectricity}} W</h3>
             </div>
             <!-- /.panel-body -->
         </div>
@@ -40,7 +43,10 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <h3>{{addedElectricity}} kW <small> for 3 days </small> </h3>
+                <div ng-hide="addedReady">
+                    <img src="images/ajax-loader.gif" alt="loading">
+                </div>
+                <h3 ng-show="addedReady">{{addedElectricity}} kW <small> for 3 days </small> </h3>
             </div>
             <!-- /.panel-body -->
         </div>
@@ -68,10 +74,6 @@
                         <div ng-show="ready" id="container">
                             
                         </div>
-
-                        <!--<script src="js/scripts.js"></script><!-- ??? -->
-                        <script src="js/highslide-full.js"></script><!-- ??? -->
-                        <script src="js/highslide.js"></script><!-- ??? -->
                     </div>
                 </div>
             </div>
