@@ -146,10 +146,10 @@ pistApp.controller('ElectricityController', ['$scope', '$http', function($scope,
                       liveRedraw: false
                   },
                   title: {
-                      text: 'Channel 4'
+                      text: 'Current consumption'
                   },
                   subtitle: {
-                      text: 'Field 6'
+                      text: 'Electricity'
                   },
                   rangeSelector: {
                       buttons: [{
