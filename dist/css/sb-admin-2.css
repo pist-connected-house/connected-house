@@ -25,6 +25,14 @@ body {
 	padding : 0px;
 }
 
+#forecast-index-table th, td {
+    text-align: center;
+}
+
+#li-forecast{
+	white-space: nowrap;
+	overflow-x: scroll;
+}
 
 #forecast-table th, td {
     text-align: center;
