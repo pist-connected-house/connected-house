@@ -1,8 +1,4 @@
 var pistApp = angular.module('pistApp', ['ngRoute']);
-pistApp.controller('MainController', ['$scope', function($scope){
-	
-}]);
-
 
 
 pistApp.config(['$routeProvider',

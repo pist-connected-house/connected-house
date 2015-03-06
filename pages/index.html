@@ -57,14 +57,30 @@
             </div>	
 			<div class=" weather-panel panel-body">
 			<ul>
-				<li class="col-xs-12">
-				<div class="col-xs-6">
-					<img src="images/nuageux.png" alt = "soleil avec petit nuage" title="Soleil avec un peu de nuage">
-				</div>
-				<div class="col-xs-6">
-					<div class="h4">Outside temperature:</div>
-					<div class="h1">10°C</div>
-				</div>
+				<li class="col-xs-12" id="li-forecast">
+					<div ng-hide="ready" class="loading">
+						<img src="images/ajax-loader.gif" alt="loading">
+						Loading chart...
+					</div>
+					<table ng-show="ready" class="table table-striped" id="forecast-index-table">
+						<thead>
+							<tr>
+								<th ng-repeat = "d in days">{{d}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td ng-repeat = "t in temp track by $index">{{t}}°C</td>
+							</tr>
+							<tr>
+								<td ng-repeat = "i in icon track by $index"><img src="images/weather/{{i.image}}.png" alt = "{{i.alt}}" title="{{i.title}}"></td>
+							</tr>
+							<tr>
+								<td ng-repeat = "i in icon track by $index">{{i.title}}</td>
+							</tr>
+						</tbody>
+					</table>
+				
 				</li>
 				<li class="col-xs-12">
 						<div class="h4 col-md-9">Inside temperature:</div>
