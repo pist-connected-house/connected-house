@@ -34,7 +34,7 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 		});
 	}
 	control();
-	$interval(control,5000);
+	var intervalPromiseControl = $interval(control,5000);
 
 
 	$scope.energyReady = false;
@@ -47,7 +47,7 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 			        var y = parseInt(a.field6);
 			        return [x, y*220];
 			      });
-				var essai = $('#container').highcharts({
+				$('#container').highcharts({
 			        chart: {
 			          type: 'line',
 			          zoomType: 'x'
@@ -119,7 +119,12 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 	}
 	current();
 	current();//deuxieme appel pour forcer le redimensionnement (car sinon bug sur Safari)
-	$interval(current, 20000);
+	var intervalPromiseCurrent = $interval(current, 20000);
+	$scope.$on('$destroy', function () { 
+		$interval.cancel(intervalPromiseCurrent); 
+		$interval.cancel(intervalPromiseControl); 
+	});
+	
 
 	
 }]);

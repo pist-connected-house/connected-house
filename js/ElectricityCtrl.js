@@ -106,7 +106,7 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
       });
   }
   getAdded();
-  $interval(getAdded, 30000);
+  var intervalAdded = $interval(getAdded, 30000);
   
   function getCurrent() {
     $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=1')
@@ -117,7 +117,12 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
   }
 
   getCurrent();
-  $interval(getCurrent, 30000);
+  var intervalCurrent = $interval(getCurrent, 30000);
+
+  $scope.$on('$destroy', function () { 
+    $interval.cancel(intervalCurrent); 
+    $interval.cancel(intervalAdded); 
+  });
 
 
 
