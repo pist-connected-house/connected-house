@@ -22,8 +22,6 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 	
 	function control(){
 	$http.get('http://kgb.emn.fr:8001/channels/5/feed.json?key=ZSAVTBI11WQOSJWY&results=1')
-     
-        
 
 		.then(function(result) {
 		var feed = result.data.feeds[0];
@@ -32,12 +30,11 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 		$scope.pressure = Math.floor(feed.field3);
 		$scope.wind = Math.floor(feed.field4);
 		$scope.pluviometry = Math.floor(feed.field5);
-      
 			
 	});
 	};
-	
-	$interval(control, 5000);
+	control();
+	$interval(control,5000);
 
 	
 }]);
