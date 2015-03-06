@@ -7,7 +7,7 @@
 <!-- /.row -->
 <div class="row">
 	<div ng-hide="ready" class="loading">
-        <img ng-src="images/ajax-loader.gif" alt="loading">
+        <img src="images/ajax-loader.gif" alt="loading">
         Loading chart...
     </div>
     <table ng-show="ready" class="table table-striped" id="forecast-table">
@@ -21,7 +21,7 @@
 				<td ng-repeat = "t in temp track by $index">{{t.morn}}°C | {{t.eve}}°C</td>
 			</tr>
 			<tr>
-				<td ng-repeat = "i in image track by $index"><img src="images/weather/{{i}}.png"></td>
+				<td ng-repeat = "i in image track by $index"><img ng-src="images/weather/{{i}}.png"></td>
 			</tr>
 			<tr>
 				<td ng-repeat = "w in weather track by $index">{{w}}</td>
