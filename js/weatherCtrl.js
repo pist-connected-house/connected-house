@@ -9,7 +9,6 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 		$scope.pressure = Math.floor(feed.field3);
 		$scope.wind = Math.floor(feed.field4);
 		$scope.pluviometry = Math.floor(feed.field5);
-		console.log(result);
 			
 	});
 	};
