@@ -1,4 +1,4 @@
-pistApp.controller('MainController', ['$scope', '$http', function($scope, $http){
+pistApp.controller('MainController', ['$scope', '$http', "$interval", function($scope, $http, $interval){
 	var jours = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 	$scope.days = [];
