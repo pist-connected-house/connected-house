@@ -13,6 +13,6 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 	});
 	};
 	
-	$interval(control(), 20000);
+	$interval(control, 5000);
 
 }]);
