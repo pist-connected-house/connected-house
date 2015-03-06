@@ -22,7 +22,7 @@ pistApp.config(['$routeProvider',
       }).
       when('/energy/water', {
         templateUrl: 'pages/water.html',
-        controller: 'MainController'
+        controller: 'WeatherController'
       }).
     	when('/energy/weather', {
       	templateUrl: 'pages/weather.html',
