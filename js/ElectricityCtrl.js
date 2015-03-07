@@ -101,6 +101,7 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
         feeds.forEach(function(element){
           sum += parseInt(element.field6);
         });
+        $scope.since = new Date(feeds[0].created_at).format("dd/mm/yyyy");
         $scope.addedElectricity = sum/1000;
         $scope.addedReady = true;
       });
