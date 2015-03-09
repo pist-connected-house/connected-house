@@ -39,8 +39,9 @@
             <div class="panel-body">
                 <div id="bd" class="clearfix">
                         
-                        <div ng-hide="energyReady">
-                            <img src="images/ajax-loader.gif" alt="loading">
+                        <div class="loading" ng-hide="energyReady">
+                            <!--<img src="images/ajax-loader.gif" alt="loading">-->
+                            <i class="fa fa-spinner fa-spin"></i>
                         </div>
                         <div ng-show="energyReady" id="container">
                         </div>
@@ -75,8 +76,8 @@
 			<ul>
 				<li class="col-xs-12" id="li-forecast">
 					<div ng-hide="ready" class="loading">
-						<img src="images/ajax-loader.gif" alt="loading">
-						Loading chart...
+						<!--<img src="images/ajax-loader.gif" alt="loading">-->
+                        <i class="fa fa-spinner fa-spin"></i>
 					</div>
 					<table ng-show="ready" class="table table-striped" id="forecast-index-table">
 						<thead>

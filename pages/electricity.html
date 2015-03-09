@@ -23,8 +23,9 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div ng-hide="currentReady">
-                    <img src="images/ajax-loader.gif" alt="loading">
+                <div class="loading" ng-hide="currentReady">
+                    <!--<img src="images/ajax-loader.gif" alt="loading">-->
+                    <i class="fa fa-spinner fa-spin"></i>
                 </div>
                 <h3 ng-show="currentReady">{{currentElectricity}} W</h3>
             </div>
@@ -40,8 +41,9 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <div ng-hide="averageReady">
-                    <img src="images/ajax-loader.gif" alt="loading">
+                <div class="loading" ng-hide="averageReady">
+                    <!--<img src="images/ajax-loader.gif" alt="loading">-->
+                    <i class="fa fa-spinner fa-spin"></i>
                 </div>
                 <h3 ng-show="averageReady">{{averageElectricity}} W <small> Since {{since}} </small> </h3>
             </div>
@@ -63,7 +65,8 @@
                         
 
                         <div ng-hide="ready" class="loading">
-                            <img src="images/ajax-loader.gif" alt="loading">
+                            <!--<img src="images/ajax-loader.gif" alt="loading">-->
+                            <i class="fa fa-spinner fa-spin"></i>
                             Loading chart...
                         </div>
                         <div ng-show="ready" id="container">
