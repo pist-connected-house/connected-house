@@ -38,6 +38,12 @@ body {
     text-align: center;
 }
 
+.btn-transpa {
+    color: #2c3e50;
+    border: none;
+    background-color: transparent;
+}
+
 .loading {
     text-align: center;
     font-size: 2em;

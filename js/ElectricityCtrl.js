@@ -93,7 +93,8 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
       });
     });*/
 
-  function getAverage() {
+  $scope.getAverage = function() {
+    $scope.averageReady = false;
     $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=22000')
       .then(function(result) {
         var sum = 0;
@@ -108,11 +109,12 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
         $scope.averageElectricity = sum*220/n;
         $scope.averageReady = true;
       });
-  }
-  getAverage();
-  var intervalAverage = $interval(getAverage, 30000);
+  };
+  $scope.getAverage();
+  var intervalAverage = $interval($scope.getAverage, 30000);
   
-  function getCurrent() {
+  $scope.getCurrent = function() {
+    $scope.currentReady = false;
     $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=1')
       .then(function(result) {
         if (result.data.feeds[0].field6 !== null) {
@@ -122,10 +124,10 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
         else
           getCurrent();
       });
-  }
+  };
 
-  getCurrent();
-  var intervalCurrent = $interval(getCurrent, 30000);
+  $scope.getCurrent();
+  var intervalCurrent = $interval($scope.getCurrent, 30000);
 
   $scope.$on('$destroy', function () { 
     $interval.cancel(intervalCurrent); 
@@ -157,7 +159,9 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
     });
   }  
 
-  $.getJSON('http://kgb.emn.fr:8001/util/my-from-sql.php?channel_id=4&field=field6&callback=?', function(data) {
+  $scope.getGlobal = function() {
+    $scope.ready = false;
+    $.getJSON('http://kgb.emn.fr:8001/util/my-from-sql.php?channel_id=4&field=field6&callback=?', function(data) {
             $scope.$apply(function(){
               $scope.ready = true;
               // create the chart
@@ -244,5 +248,8 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
               });
               });
         });
+  };
+  $scope.getGlobal();
+  
 
 }]);
