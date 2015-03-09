@@ -1,6 +1,6 @@
 pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', function($scope, $http, $interval){
   $scope.ready = false;
-  $scope.addedReady = false;
+  $scope.averageReady = false;
   $scope.currentReady = false;
 
   /*$http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=2000')
@@ -93,27 +93,34 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
       });
     });*/
 
-  function getAdded() {
+  function getAverage() {
     $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=22000')
       .then(function(result) {
         var sum = 0;
+        var n = 0;
         var feeds = result.data.feeds;
         feeds.forEach(function(element){
-          sum += parseInt(element.field6);
+          if (element.field6 !== null)
+            sum += parseInt(element.field6);
+            n++;
         });
         $scope.since = new Date(feeds[0].created_at).format("dd/mm/yyyy");
-        $scope.addedElectricity = sum/1000;
-        $scope.addedReady = true;
+        $scope.averageElectricity = sum*220/n;
+        $scope.averageReady = true;
       });
   }
-  getAdded();
-  var intervalAdded = $interval(getAdded, 30000);
+  getAverage();
+  var intervalAverage = $interval(getAverage, 30000);
   
   function getCurrent() {
     $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=1')
       .then(function(result) {
-        $scope.currentElectricity = parseInt(result.data.feeds[0].field6) * 220;
-        $scope.currentReady = true;
+        if (result.data.feeds[0].field6 !== null) {
+          $scope.currentElectricity = parseInt(result.data.feeds[0].field6) * 220;
+          $scope.currentReady = true;
+        }
+        else
+          getCurrent();
       });
   }
 
@@ -122,7 +129,7 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
 
   $scope.$on('$destroy', function () { 
     $interval.cancel(intervalCurrent); 
-    $interval.cancel(intervalAdded); 
+    $interval.cancel(intervalAverage); 
   });
 
 

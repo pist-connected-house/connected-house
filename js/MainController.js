@@ -41,12 +41,16 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 	function current() {
 		$http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?results=310&key=94BREBU27ZFTXJ38')
 			.then(function(result) {
-				var donnees = result.data.feeds.map(function(a) {
-			        var date = a.created_at;
-			        var x = new Date(date).getTime();
-			        var y = parseInt(a.field6);
-			        return [x, y*220];
-			      });
+				var donnees = result.data.feeds
+					.filter(function(element) {
+						return element.field6 !== null;
+					})
+					.map(function(a) {
+				        var date = a.created_at;
+				        var x = new Date(date).getTime();
+				        var y = parseInt(a.field6);
+				        return [x, y*220];
+				    });
 				$('#container').highcharts({
 			        chart: {
 			          type: 'line',
@@ -108,8 +112,8 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 			        },
 			        series: [{
 			        	showInLegend: false,
-			          data: donnees,
-			          dataGrouping: {
+			          	data: donnees,
+			          	dataGrouping: {
 			            enabled: false
 			          }
 			        }]
