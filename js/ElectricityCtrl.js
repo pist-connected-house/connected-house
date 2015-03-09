@@ -212,11 +212,11 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
                           afterSetExtremes: afterSetExtremes
                       },
                       plotLines: [{
-                color: 'red', // Color value
-                //dashStyle: 'longdashdot', // Style of the plot line. Default to solid
-                value: timestamp, // Value of where the line will appear
-                width: 2 // Width of the line    
-              }],
+                        color: 'red', // Color value
+                        //dashStyle: 'longdashdot', // Style of the plot line. Default to solid
+                        value: timestamp, // Value of where the line will appear
+                        width: 2 // Width of the line    
+                      }],
                       //                minRange: 3600 * 1000, // one hour
                       ordinal: false
                   },
