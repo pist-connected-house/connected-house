@@ -8,7 +8,7 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 	
 	$scope.submitCity = function() {
 		$scope.days = [];
-		$scope.temp = [];
+		$scope.temperature = [];
 		$scope.icon = [];
 		$scope.input = false;
 		$scope.load = false;
@@ -23,7 +23,7 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 					var dateObject = new Date(element.dt * 1000);
 					var dateReadable = jours[dateObject.getDay()]+' '+dateObject.getDate();
 					$scope.days.push(dateReadable);
-					$scope.temp.push(Math.floor(element.temp.day));
+					$scope.temperature.push(Math.floor(element.temp.day));
 				});
 				$scope.load = true;
 				$scope.ready = true;
