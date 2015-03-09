@@ -12,7 +12,7 @@ pistApp.controller('ForecastController', ['$scope', '$http', function($scope, $h
 		$scope.wind = [];
 		$scope.ready = false;
 		$scope.errors = false;
-		$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q='+$scope.city+',FR&mode=json&units=metric&cnt=7&APPID=e2cc44b4dc40d5a89d3fe28740dd1c18')
+		$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q='+$scope.city+',FR&mode=json&units=metric&cnt=7&APPID='+APIKEYOPENWEATHER)
 		.then(function(result) {
 			if (result.data.cod === "200") {
 				var list = result.data.list;
