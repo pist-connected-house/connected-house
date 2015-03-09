@@ -75,11 +75,20 @@
 			<div class=" weather-panel panel-body">
 			<ul>
 				<li class="col-xs-12" id="li-forecast">
-					<div ng-hide="ready" class="loading">
+					<div ng-hide="load" class="loading">
 						<!--<img src="images/ajax-loader.gif" alt="loading">-->
                         <i class="fa fa-spinner fa-spin"></i>
 					</div>
-					<table ng-show="ready" class="table table-striped" id="forecast-index-table">
+                    <div id="errors-message" ng-show="errors">
+                        <i class="fa fa-exclamation-triangle"></i><strong> {{errorCity}}</strong> does not exist...
+                    </div>
+                    <form ng-show="input" ng-submit="submitCity()">
+                        <div id="input-city" class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
+                            <input type="text" class="form-control" placeholder="Enter a city" aria-describedby="basic-addon1" ng-model="city">
+                        </div>
+                    </form>
+					<table ng-show="ready" class="table table-striped table-bordered" id="forecast-index-table">
 						<thead>
 							<tr>
 								<th ng-repeat = "d in days">{{d}}</th>
@@ -94,6 +103,10 @@
 							</tr>
 						</tbody>
 					</table>
+                    <div id="info-city" ng-show="ready">
+                        <span id="city-name">{{city}}, FR </span><button type="button" ng-click="button()" class="btn btn-info">New search</button>
+                    </div>
+                    
 				
 				</li>
                 <li class="col-xs-12">

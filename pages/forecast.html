@@ -6,6 +6,15 @@
 </div>
 <!-- /.row -->
 <div class="row">
+	<div id="errors-message" ng-show="errors">
+        <i class="fa fa-exclamation-triangle"></i><strong> {{errorCity}}</strong> does not exist...
+    </div>
+	<form ng-submit="submitCity()">
+		<div id="input-city" class="input-group">
+			<span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
+		  	<input type="text" class="form-control" placeholder="Enter a city" aria-describedby="basic-addon1" ng-model="city">
+		</div>
+	</form>
 	<div ng-hide="ready" class="loading">
         <!--<img src="images/ajax-loader.gif" alt="loading">-->
         <i class="fa fa-spinner fa-spin"></i>

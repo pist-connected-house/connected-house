@@ -122,7 +122,7 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
           $scope.currentReady = true;
         }
         else
-          getCurrent();
+          $scope.getCurrent();
       });
   };
 

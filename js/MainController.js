@@ -1,24 +1,52 @@
 pistApp.controller('MainController', ['$scope', '$http', "$interval", function($scope, $http, $interval){
 	var jours = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-	$scope.days = [];
-	$scope.temp = [];
-	$scope.icon = [];
+	$scope.load = true;
 	$scope.ready = false;
+	$scope.input = true;
+	$scope.errors = false;
 	
-	$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=7')
+	$scope.submitCity = function() {
+		$scope.days = [];
+		$scope.temp = [];
+		$scope.icon = [];
+		$scope.input = false;
+		$scope.load = false;
+		$scope.errors = false;
+		$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q='+$scope.city+',FR&mode=json&units=metric&cnt=7')
 		.then(function(result) {
-			var list = result.data.list;
-			list.forEach(function(element){
-				$scope.icon.push({image:element.weather[0].icon, alt:element.weather[0].main, title:element.weather[0].description});
-				var dateObject = new Date(element.dt * 1000);
-				var dateReadable = jours[dateObject.getDay()]+' '+dateObject.getDate();
-				$scope.days.push(dateReadable);
-				$scope.temp.push(Math.floor(element.temp.day));
-			});
-			$scope.ready = true;
+			if (result.data.cod === "200") {
+				var list = result.data.list;
+				$scope.city = result.data.city.name;
+				list.forEach(function(element){
+					$scope.icon.push({image:element.weather[0].icon, alt:element.weather[0].main, title:element.weather[0].description});
+					var dateObject = new Date(element.dt * 1000);
+					var dateReadable = jours[dateObject.getDay()]+' '+dateObject.getDate();
+					$scope.days.push(dateReadable);
+					$scope.temp.push(Math.floor(element.temp.day));
+				});
+				$scope.load = true;
+				$scope.ready = true;
+			}
+			else {
+				$scope.errorCity = $scope.city;
+				$scope.errors = true;
+				$scope.load = true;
+				$scope.ready = false;
+				$scope.input = true;
+			}
+			
+		});
+	};
 	
-	});
+
+	$scope.button = function() {
+		$scope.city = "";
+		$scope.load = true;
+		$scope.ready = false;
+		$scope.input = true;
+		$scope.errors = false;
+	};
 	
 	function control(){
 		$http.get('http://kgb.emn.fr:8001/channels/5/feed.json?key=ZSAVTBI11WQOSJWY&results=1')

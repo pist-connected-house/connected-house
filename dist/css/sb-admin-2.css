@@ -25,6 +25,26 @@ body {
 	padding : 0px;
 }
 
+#errors-message {
+    color: #e74c3c;
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+#city-name {
+    margin-right: 4%;
+}
+
+#info-city {
+    margin-bottom: 1%;
+    font-weight: bold;
+}
+
+#input-city {
+    margin-bottom: 3%;
+}
+
 #forecast-index-table th, td {
     text-align: center;
 }
