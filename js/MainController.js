@@ -1,10 +1,44 @@
-pistApp.controller('MainController', ['$scope', '$http', "$interval", function($scope, $http, $interval){
+pistApp.controller('MainController', ['$scope', '$http', '$interval', 'storage', function($scope, $http, $interval, storage){
 	var jours = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 	$scope.load = true;
 	$scope.ready = false;
 	$scope.input = true;
 	$scope.errors = false;
+
+	if (storage.get('forecast') !== null) {
+		if (new Date(storage.get('forecast').expire) <= new Date()) {
+			storage.clearAll();
+		}
+		else {
+			$scope.days = [];
+			$scope.temperature = [];
+			$scope.icon = [];
+			$scope.input = false;
+			$scope.load = false;
+			$scope.errors = false;
+			$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q='+storage.get('forecast').city+',FR&mode=json&units=metric&cnt=7&APPID='+
+	APIKEYOPENWEATHER)
+			.then(function(result) {
+				var list = result.data.list;
+				$scope.city = result.data.city.name;
+				list.forEach(function(element){
+					$scope.icon.push({image:element.weather[0].icon, alt:element.weather[0].main, title:element.weather[0].description});
+					var dateObject = new Date(element.dt * 1000);
+					var dateReadable = jours[dateObject.getDay()]+' '+dateObject.getDate();
+					$scope.days.push(dateReadable);
+					$scope.temperature.push(Math.floor(element.temp.day));
+				});
+				var tomorrow = new Date();
+				tomorrow.setDate(tomorrow.getDate() + 2);
+				storage.remove('forecast');
+				storage.set('forecast', {city: $scope.city, expire: tomorrow});
+				$scope.load = true;
+				$scope.ready = true;
+				
+			});
+		}
+	}
 	
 	$scope.submitCity = function() {
 		$scope.days = [];
@@ -26,6 +60,10 @@ APIKEYOPENWEATHER)
 					$scope.days.push(dateReadable);
 					$scope.temperature.push(Math.floor(element.temp.day));
 				});
+				var tomorrow = new Date();
+				tomorrow.setDate(tomorrow.getDate() + 2);
+				storage.remove('forecast');
+				storage.set('forecast', {city: $scope.city, expire: tomorrow});
 				$scope.load = true;
 				$scope.ready = true;
 			}

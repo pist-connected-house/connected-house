@@ -1,4 +1,4 @@
-var pistApp = angular.module('pistApp', ['ngRoute']);
+var pistApp = angular.module('pistApp', ['ngRoute', 'angularLocalStorage']);
 var APIKEYOPENWEATHER = 'e2cc44b4dc40d5a89d3fe28740dd1c18';
 
 
