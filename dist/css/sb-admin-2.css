@@ -10,7 +10,7 @@ body {
 
 .weather-panel {
 	list-style-type : none;
-	max-height : 27em;
+	max-height : 430px;
 	overflow-y : scroll;
 }
 

@@ -13,7 +13,8 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 		$scope.input = false;
 		$scope.load = false;
 		$scope.errors = false;
-		$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q='+$scope.city+',FR&mode=json&units=metric&cnt=7&APPID='+APIKEYOPENWEATHER)
+		$http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q='+$scope.city+',FR&mode=json&units=metric&cnt=7&APPID='+
+APIKEYOPENWEATHER)
 		.then(function(result) {
 			if (result.data.cod === "200") {
 				var list = result.data.list;
@@ -58,13 +59,29 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 			$scope.direction = Math.floor(feed.field7);
 	        $scope.speed = Math.floor(feed.field8);
 			$scope.pluviometry = Math.floor(feed.field4);
-	        $scope.pressure = Math.floor(feed.field1);
+	        $scope.pressure = Math.floor(feed.field1/100);
 	        $scope.luminosity = Math.floor(feed.field5);	
 		});
 	}
+	
+	function control2(){
+		$http.get('http://kgb.emn.fr:8001/channels/4/field/1.json?key=94BREBU27ZFTXJ38&results=1')
+		.then(function(result){
+		
+			var feed = result.data.feeds[0];
+			var inter = feed.field1;
+			if(inter == null)
+				control2();
+			else
+				$scope.inside = Math.floor(inter);
+		});
+	}
+	
 	control();
-	var intervalPromiseControl = $interval(control,5000);
-
+	control2();
+	
+	var intervalTempInt = $interval(control, 10000);
+	var intervalReste= $interval(control2, 10000);
 
 	$scope.energyReady = false;
 	function current() {
@@ -154,8 +171,9 @@ pistApp.controller('MainController', ['$scope', '$http', "$interval", function($
 	current();//deuxieme appel pour forcer le redimensionnement (car sinon bug sur Safari)
 	var intervalPromiseCurrent = $interval(current, 20000);
 	$scope.$on('$destroy', function () { 
-		$interval.cancel(intervalPromiseCurrent); 
-		$interval.cancel(intervalPromiseControl); 
+		$interval.cancel(intervalPromiseCurrent);
+		$interval.cancel(intervalTempInt); 
+		$interval.cancel(intervalReste); 		
 	});
 	
 
