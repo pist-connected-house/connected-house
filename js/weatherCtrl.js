@@ -12,9 +12,6 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
         $scope.luminosity = Math.floor(feed.field5);
         	
 		});
-<<<<<<< HEAD
-     };
-=======
 	};
 	
 	$scope.control2=function(){
@@ -22,13 +19,12 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 	.then(function(result){
 		var feed = result.data.feeds[0];
 		var inter = feed.field1;
-		if(inter == null)
+		if(inter === null)
 			$scope.control2();
 		else
 			$scope.inside = Math.floor(inter);
 		});
 	};
->>>>>>> origin/master
 	$scope.control();
 	$scope.control2();
 	
