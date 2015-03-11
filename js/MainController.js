@@ -8,7 +8,7 @@ pistApp.controller('MainController', ['$scope', '$http', '$interval', 'storage',
 
 	if (storage.get('forecast') !== null) {
 		if (new Date(storage.get('forecast').expire) <= new Date()) {
-			storage.clearAll();
+			storage.remove('forecast');
 		}
 		else {
 			$scope.days = [];
