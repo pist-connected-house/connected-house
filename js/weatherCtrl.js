@@ -3,7 +3,7 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 	$http.get('http://kgb.emn.fr:8001/channels/5/feed.json?key=ZSAVTBI11WQOSJWY&results=1')
 	.then(function(result) {
 		var feed = result.data.feeds[0];
-		$scope.temp = Math.floor(feed.field2);
+		$scope.temp = parseFloat(feed.field2).toFixed(1);
 		$scope.humidity = Math.floor(feed.field3);
 		$scope.direction = Math.floor(feed.field7);
         $scope.speed = Math.floor(feed.field8);
@@ -15,15 +15,33 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 	};
 	
 	$scope.control2=function(){
-	$http.get('http://kgb.emn.fr:8001/channels/4/field/1.json?key=94BREBU27ZFTXJ38&results=1')
-	.then(function(result){
-		var feed = result.data.feeds[0];
-		var inter = feed.field1;
-		if(inter === null)
-			$scope.control2();
-		else
-			$scope.inside = Math.floor(inter);
-		});
+		if ($scope.inside === undefined) {
+			$http.get('http://kgb.emn.fr:8001/channels/4/field/1.json?key=94BREBU27ZFTXJ38&results=20')
+			.then(function(result){
+				var i = 0;
+				var feed = result.data.feeds;
+				var n = feed.length;
+				do {
+					var inter = feed[n - 1 - i].field1;
+					if (inter !== null)
+						$scope.inside = parseFloat(inter).toFixed(1);
+					else
+						i++;
+				}
+				while ($scope.inside === undefined && (n - 1 - i) >= 0);
+			});
+		}
+		else {
+			$http.get('http://kgb.emn.fr:8001/channels/4/field/1.json?key=94BREBU27ZFTXJ38&results=1')
+			.then(function(result){
+				var feed = result.data.feeds[0];
+				var inter = feed.field1;
+				if(inter === null)
+					$scope.control2();
+				else
+					$scope.inside = parseFloat(inter).toFixed(1);
+			});
+		}
 	};
 	$scope.control();
 	$scope.control2();
