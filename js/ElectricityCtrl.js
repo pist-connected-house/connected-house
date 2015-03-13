@@ -106,7 +106,7 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
             n++;
         });
         $scope.since = new Date(feeds[0].created_at).format("dd/mm/yyyy");
-        $scope.averageElectricity = sum*220*24/(n*1000);
+        $scope.averageElectricity = (sum*220*24/(n*1000)).toFixed(3);
         $scope.averageReady = true;
       });
   };
