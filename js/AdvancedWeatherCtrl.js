@@ -11,7 +11,7 @@ pistApp.controller('AdvancedWeatherController', ['$scope', '$http', "$interval",
 		$scope.humidity = Math.floor(feed.field3);
 		$scope.direction = Math.floor(feed.field7);
         $scope.speed = Math.floor(feed.field8);
-        $scope.intermediaire =(17,27*$scope.temp)/(237,7+$scope.temp)+Math.log($scope.humidity);
+        $scope.intermediaire =(17,27*$scope.temp)/(237,7+$scope.temp)+Math.log($scope.humidity/100);
         //$scope.tempF=Math.floor($scope.temp*1.8+32);
 		
         $scope.dewpoint=parseFloat((237,7*$scope.intermediaire)/(17,27-$scope.intermediaire)).toFixed(1);
