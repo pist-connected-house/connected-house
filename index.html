@@ -47,6 +47,7 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angularLocalStorage-nc/src/angularLocalStorage.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="js/app.js"></script>
     <script src="js/ElectricityCtrl.js"></script>
     <script src="js/ForecastCtrl.js"></script>
@@ -54,6 +55,7 @@
     <script src="js/weatherCtrl.js"></script>
     <script src="js/AdvancedWeatherCtrl.js"></script>
     <script src="js/HeaderController.js"></script>
+    <script src="js/PhotovoltaicController.js"></script>
 
 </head>
 
@@ -112,6 +114,9 @@
                                 </li>
                                 <li>
                                     <a ng-class="{ active: isActive('/energy/water')}" href="#/energy/water">Water</a>
+                                </li>
+                                <li>
+                                    <a ng-class="{ active: isActive('/energy/photovoltaic')}" href="#/energy/photovoltaic">Photovoltaic panels</a>
                                 </li>
 
 
