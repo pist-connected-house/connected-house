@@ -22,6 +22,7 @@ pistApp.controller('AdvancedWeatherController', ['$scope', '$http', "$interval",
 			 $scope.tempercu =($scope.temp + 0.2*(0.1345*$scope.temp-1.59)*$scope.speed).toFixed(1);
 		 }
 		
+		//On veut faire la pluie sur la journée
 		$scope.pluie = parseFloat(feed.field4).toFixed(1);		
                                                                              
     });
