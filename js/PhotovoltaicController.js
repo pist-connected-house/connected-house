@@ -1,5 +1,12 @@
 pistApp.controller('PhotovoltaicController', ['$scope', '$http', '$interval', function($scope, $http, $interval){
 	$scope.errors = false;
+	$scope.loaded = false;
+	$scope.inverter = {
+		number: 1,
+	};
+	$scope.power = {
+		type : 'ac',
+	};
 
 	$scope.getPhotoData = function(start, end){
 		if (start > end) { 
@@ -8,9 +15,17 @@ pistApp.controller('PhotovoltaicController', ['$scope', '$http', '$interval', fu
 		}
 		else
 			$scope.errors = false;
+			$scope.loaded = true;
 			//requete http en convertissant les date en timestamp
+			$http.get('http://localhost:8000/photovolta-from-sql.php?ondul='+$scope.inverter.number+'&start='+new Date(start).getTime()+'&end='+new Date(end).getTime())
+			.then(function(result) {
+				$scope.feeds = result.data.feeds;
+			});
 	};
 
+	$scope.back = function() {
+		$scope.loaded = false;
+	};
 
 	//Date picker settings
 	$scope.datepickers = {
@@ -29,10 +44,10 @@ pistApp.controller('PhotovoltaicController', ['$scope', '$http', '$interval', fu
 	};
 
 
-	/*$scope.toggleMin = function() {
-	$scope.minDate = $scope.minDate ? null : new Date();
-	};
-	$scope.toggleMin();*/
+	$scope.disabled = function(date, mode) {
+	    return ( mode === 'day' && ( date > new Date()));
+	  };
+
 
 	$scope.open = function($event, which) {
         $event.preventDefault();
