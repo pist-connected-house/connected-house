@@ -81,6 +81,7 @@ APIKEYOPENWEATHER)
 
 	$scope.button = function() {
 		$scope.city = "";
+		storage.remove('forecast');
 		$scope.load = true;
 		$scope.ready = false;
 		$scope.input = true;
