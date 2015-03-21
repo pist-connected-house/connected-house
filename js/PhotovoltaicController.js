@@ -9,22 +9,76 @@ pistApp.controller('PhotovoltaicController', ['$scope', '$http', '$interval', fu
 	};
 
 	$scope.getPhotoData = function(start, end){
+		$scope.scatter = false;
 		if (start > end) { 
 			$scope.errors = true;
 			$scope.message = 'Please enter dates in chronological order';
 		}
-		else
+		else { 
 			$scope.errors = false;
 			$scope.loaded = true;
-			//requete http en convertissant les date en timestamp
 			$http.get('http://localhost:8000/photovolta-from-sql.php?ondul='+$scope.inverter.number+'&start='+new Date(start).getTime()+'&end='+new Date(end).getTime())
 			.then(function(result) {
 				$scope.feeds = result.data.feeds;
+				var donnees = result.data.feeds.map(function(a) {
+			    	var x = new Date(parseInt(a.date)).getTime();
+			    	var y = parseInt(a.value);
+			    	return [x, y];
+		      	});
+				$('#container').highcharts({
+					chart: {
+			          type: 'scatter',
+			        },
+			        title: {
+			            text: 'Power AC - Inverter '+$scope.inverter.number,
+			            x: -20 //center
+			        },
+			        subtitle: {
+			            text: 'Source: http://photovolta2.univ-nantes.fr/',
+			            x: -20
+			        },
+			        xAxis: {
+			            type: 'datetime',
+			            ordinal: false,
+			        },
+			        yAxis: {
+			            title: {
+			                text: 'Power AC (W)'
+			            },
+			            plotLines: [{
+			                value: 0,
+			                width: 1,
+			                color: '#808080'
+			            }],
+			            floor: 0
+			        },
+			        tooltip: {
+			            valueSuffix: 'W',
+			            headerFormat: '<b>{series.name}</b><br>',
+                    	pointFormat: '{point.x} , {point.y}',
+                    	formatter: function() {
+		                    return  '<b>' + this.series.name +'</b><br/>' + Highcharts.dateFormat('%e %b. %Y', new Date(this.x)) + ', ' + this.y + 'W';
+		                }
+			        },
+			        legend: {
+			            layout: 'vertical',
+			            align: 'right',
+			            verticalAlign: 'middle',
+			            borderWidth: 0
+			        },
+			        series: [{
+			        	name: 'Power AC',
+			        	data: donnees
+			       }]
+			    });
+			$scope.scatter = true;
 			});
+		}
 	};
 
 	$scope.back = function() {
 		$scope.loaded = false;
+		$scope.scatter = false;
 	};
 
 	//Date picker settings
@@ -41,6 +95,7 @@ pistApp.controller('PhotovoltaicController', ['$scope', '$http', '$interval', fu
 
 	$scope.clear = function () {
 		$scope.startDt = null;
+		$scope.endDt = null;
 	};
 
 

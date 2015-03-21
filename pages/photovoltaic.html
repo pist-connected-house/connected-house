@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-md-6">
               <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="startDt" is-open="datepickers.startDt" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="startDt" is-open="datepickers.startDt" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event, 'startDt')"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -27,7 +27,7 @@
           </div>
           <div class="col-md-6">
               <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="endDt" is-open="datepickers.endDt" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="endDt" is-open="datepickers.endDt" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event, 'endDt')"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -64,7 +64,13 @@
 
       <div ng-show="loaded">
         <button type="button" class="btn btn-sm btn-info" ng-click="back()" >Back</button></br>
-      {{feeds}}
+        <div ng-hide="scatter" class="loading">
+          <i class="fa fa-spinner fa-spin"></i>
+          Loading chart...
+        </div>
+        <div ng-show="scatter" id="container">
+          
+        </div>
       </div>
     </div>
 </div>
