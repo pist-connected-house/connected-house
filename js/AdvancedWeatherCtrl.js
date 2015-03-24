@@ -1,7 +1,5 @@
 pistApp.controller('AdvancedWeatherController', ['$scope', '$http', "$interval", function($scope, $http, $interval){
-	
 	$scope.tempercu;
-	
 	
     $scope.control = function(){
         $http.get('http://kgb.emn.fr:8001/channels/5/feed.json?key=ZSAVTBI11WQOSJWY&results=1')
@@ -16,10 +14,10 @@ pistApp.controller('AdvancedWeatherController', ['$scope', '$http', "$interval",
         $scope.dewpoint=parseFloat((237,7*$scope.intermediaire)/(17,27-$scope.intermediaire)).toFixed(1);
 		
 		 if($scope.speed >= 4.8) {
-			 $scope.tempercu = (13.12 + 0.6215*$scope.temp - 11.37*Math.pow($scope.speed, 0.16) + 0.3965*$scope.temp*Math.pow($scope.speed, 0.16)).toFixed(1);
+			 $scope.tempercu = parseFloat(13.12 + 0.6215*$scope.temp - 11.37*Math.pow($scope.speed, 0.16) + 0.3965*$scope.temp*Math.pow($scope.speed, 0.16)).toFixed(1);
 		 }
 		 else {
-			 $scope.tempercu =($scope.temp + 0.2*(0.1345*$scope.temp-1.59)*$scope.speed).toFixed(1);
+			 $scope.tempercu =parseFloat($scope.temp + 0.2*(0.1345*$scope.temp-1.59)*$scope.speed).toFixed(1);
 		 }
 		
 		//On veut faire la pluie sur la journée
