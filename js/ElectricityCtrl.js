@@ -25,15 +25,35 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
   
   $scope.getCurrent = function() {
     $scope.currentReady = false;
-    $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=1')
-      .then(function(result) {
-        if (result.data.feeds[0].field6 !== null) {
-          $scope.currentElectricity = parseInt(result.data.feeds[0].field6) * 220;
-          $scope.currentReady = true;
+    if ($scope.currentElectricity === undefined) {
+      $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=20')
+      .then(function(result){
+        var i = 0;
+        var feed = result.data.feeds;
+        var n = feed.length;
+        do {
+          var value = feed[n - 1 - i].field6;
+          if (value !== null) {
+            $scope.currentElectricity = parseFloat(value).toFixed(1);
+            $scope.currentReady = true;
+          }
+          else
+            i++;
         }
-        else
-          $scope.getCurrent();
+        while ($scope.currentElectricity === undefined && (n - 1 - i) >= 0);
       });
+    }
+    else {
+      $http.get('http://kgb.emn.fr:8001/channels/4/field/6.json?key=94BREBU27ZFTXJ38&results=1')
+      .then(function(result){
+        var feed = result.data.feeds[0];
+        var value = feed.field6;
+        if(value !== null) { 
+          $scope.currentElectricity = parseFloat(value).toFixed(1);
+        }
+        $scope.currentReady = true;
+      });
+    }
   };
 
   $scope.getCurrent();

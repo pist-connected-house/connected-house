@@ -126,9 +126,7 @@ APIKEYOPENWEATHER)
 			.then(function(result){
 				var feed = result.data.feeds[0];
 				var inter = feed.field1;
-				if(inter === null)
-					control2();
-				else
+				if(inter !== null)
 					$scope.inside = parseFloat(inter).toFixed(1);
 			});
 		}
