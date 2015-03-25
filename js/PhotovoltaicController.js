@@ -4,9 +4,6 @@ pistApp.controller('PhotovoltaicController', ['$scope', '$http', '$interval', fu
 	$scope.inverter = {
 		number: 1,
 	};
-	$scope.power = {
-		type : 'ac',
-	};
 
 	$scope.getPhotoData = function(start, end){
 		$scope.scatter = false;

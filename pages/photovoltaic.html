@@ -35,7 +35,7 @@
           </div>
         </div> 
 
-        <div class="radio">
+        <div class="radio inverters">
           <label>
             <input type="radio" name="inverter" value="1" ng-model="inverter.number" checked>
             Inverter 1
@@ -45,20 +45,15 @@
             Inverter 2
           </label>
         </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="power" value="ac" ng-model="power.type" checked>
-            Power AC
-          </label>
-          <label>
-            <input type="radio" name="power" value="dc" ng-model="power.type">
-            Power DC
-          </label>
+        <div class="inverters">
+          <button type="button" class="btn btn-sm btn-info" ng-click="getPhotoData(startDt, endDt)" >Submit</button>
         </div>
 
-        <button type="button" class="btn btn-sm btn-info" ng-click="getPhotoData(startDt, endDt)" >Submit</button></br>
+        
+        <br>
+        <br>
         <div>
-          <p class="errors-message" ng-show="errors"><i class="fa fa-exclamation-triangle"></i><strong>{{message}}</strong></p>
+          <p id="errors-message" ng-show="errors"><i class="fa fa-exclamation-triangle"></i><strong>{{message}}</strong></p>
         </div>
       </div>
 

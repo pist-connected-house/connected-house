@@ -25,6 +25,10 @@ body {
 	padding : 0px;
 }
 
+.inverters {
+    text-align: center;
+}
+
 #errors-message {
     color: #e74c3c;
     font-size: 1.3em;
