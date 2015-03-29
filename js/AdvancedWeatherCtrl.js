@@ -28,17 +28,24 @@ pistApp.controller('AdvancedWeatherController', ['$scope', '$http', "$interval",
 	
 	
     $scope.control2 = function(){
-		$http.get('http://kgb.emn.fr:8001/channels/5/field/4.json?key=ZSAVTBI11WQOSJWY&results=100')
+		$http.get('http://kgb.emn.fr:8001/channels/5/field/8.json?key=ZSAVTBI11WQOSJWY&results=100')
 	.then(function(result) {
 		var sum = 0;
         var n = 0;
         var feeds = result.data.feeds;
         feeds.forEach(function(element){
-          if (element.field4 !== null)
-            sum += parseInt(element.field4);
+          if (element.field8 !== null)
+            sum += parseFloat(element.field8);
             n++;
         });
         $scope.averageWind = (sum/n).toFixed(1);
+        //gusts
+        $scope.gust = 0;
+        feeds.forEach(function(element) {
+        	if (element.field8 > 1.5*$scope.averageWind && element.field8 > $scope.gust) {
+        		$scope.gust = element.field8;
+        	}
+        });
 	});     
     };
     
