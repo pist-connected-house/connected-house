@@ -14,7 +14,7 @@ pistApp.controller('PhotovoltaicController', ['$scope', '$http', '$interval', fu
 		else { 
 			$scope.errors = false;
 			$scope.loaded = true;
-			$http.get('http://localhost:8000/photovolta-from-sql.php?ondul='+$scope.inverter.number+'&start='+new Date(start).getTime()+'&end='+new Date(end).getTime())
+			$http.get('http://photovolta2.univ-nantes.fr/photovolta-from-sql.php?ondul='+$scope.inverter.number+'&start='+new Date(start).getTime()+'&end='+new Date(end).getTime())
 			.then(function(result) {
 				$scope.feeds = result.data.feeds;
 				var donnees = result.data.feeds.map(function(a) {
