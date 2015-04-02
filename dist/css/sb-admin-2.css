@@ -3,6 +3,10 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto-Light.ttf') format('truetype');
+}
 
 body {
     background-color: #f8f8f8;
@@ -233,7 +237,7 @@ body {
 }
 
 .btn-success.btn-outline {
-    color: #5cb85c;
+    color: #2ecc71;
 }
 
 .btn-info.btn-outline {
@@ -245,7 +249,7 @@ body {
 }
 
 .btn-danger.btn-outline {
-    color: #d9534f;
+    color: #3498db;
 }
 
 .btn-primary.btn-outline:hover,
@@ -320,19 +324,19 @@ table.dataTable thead .sorting_desc_disabled {
 table.dataTable thead .sorting_asc:after {
     content: "\f0de";
     float: right;
-    font-family: fontawesome;
+    font-family: 'Roboto', sans-serif;
 }
 
 table.dataTable thead .sorting_desc:after {
     content: "\f0dd";
     float: right;
-    font-family: fontawesome;
+    font-family: 'Roboto', sans-serif;
 }
 
 table.dataTable thead .sorting:after {
     content: "\f0dc";
     float: right;
-    font-family: fontawesome;
+    font-family: 'Roboto', sans-serif;
     color: rgba(50,50,50,.5);
 }
 
@@ -380,38 +384,38 @@ table.dataTable thead .sorting:after {
 }
 
 .panel-green {
-    border-color: #5cb85c;
+    border-color: #2ecc71;
 }
 
 .panel-green .panel-heading {
-    border-color: #5cb85c;
+    border-color: #2ecc71;
     color: #fff;
-    background-color: #5cb85c;
+    background-color: #2ecc71;
 }
 
 .panel-green a {
-    color: #5cb85c;
+    color: #2ecc71;
 }
 
 .panel-green a:hover {
     color: #3d8b3d;
 }
 
-.panel-red {
-    border-color: #d9534f;
+.panel-blue {
+    border-color: #3498db;
 }
 
-.panel-red .panel-heading {
-    border-color: #d9534f;
+.panel-blue .panel-heading {
+    border-color: #3498db;
     color: #fff;
-    background-color: #d9534f;
+    background-color: #3498db;
 }
 
-.panel-red a {
-    color: #d9534f;
+.panel-blue a {
+    color: #3498db;
 }
 
-.panel-red a:hover {
+.panel-blue a:hover {
     color: #b52b27;
 }
 
