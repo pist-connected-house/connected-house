@@ -29,6 +29,12 @@ body {
 	padding : 0px;
 }
 
+.btn-custom {
+    border-radius: 1px;
+    background-color: #3498db;
+    color: white;
+}
+
 .inverters {
     text-align: center;
 }
